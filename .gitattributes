@@ -1,0 +1,6 @@
+* text=auto
+# Preserve upstream source, artwork and license bytes exactly as distributed.
+Vendor/** -text -whitespace
+LICENSE -text -whitespace
+*.icns -text
+*.png -text
