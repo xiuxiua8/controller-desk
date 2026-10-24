@@ -40,11 +40,10 @@ A small native macOS app for connecting and testing game controllers.
 
 ## 构建和验证
 
-需要 macOS 14+、Xcode Command Line Tools、Python 3，以及通过 Homebrew 安装的 blueutil。运行单元 / 图形测试另需 Node.js。
+需要 macOS 14+、Xcode Command Line Tools 和 Python 3。运行单元 / 图形测试另需 Node.js。blueutil 2.14.0 源码已固定版本随仓库提供，构建时一起编译，无需另装 Homebrew 依赖。
 
 ```sh
 xcode-select --install
-brew install blueutil
 ./build.sh
 ./test.sh
 ```

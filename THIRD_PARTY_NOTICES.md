@@ -20,7 +20,7 @@ The original SVG and complete license are in Vendor/GamepadAssetPack. make_xbox_
 
 https://github.com/toy/blueutil - MIT License.
 
-The build copies blueutil from the local Homebrew installation and includes its complete LICENSE.txt as blueutil-LICENSE.txt in the app bundle. blueutil source is not vendored here.
+Version 2.14.0, pinned upstream commit 60d8411fa3f9968ab6f05e198b486fe89961e18f. Unmodified source, build recipe and complete MIT license are in Vendor/blueutil. The build compiles the helper for the application deployment target and includes LICENSE.txt as blueutil-LICENSE.txt in the app bundle.
 
 ## Mobapad reference
 

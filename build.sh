@@ -15,9 +15,10 @@ mkdir -p "$app/Contents/MacOS" "$app/Contents/Resources"
 xcrun clang -fobjc-arc -O2 -Wall -Wextra -Wno-unused-parameter -target "$arch-apple-macos14.0" -c Sources/HIDBridge.m -o build/HIDBridge.o
 xcrun swiftc -swift-version 5 -warnings-as-errors -O -target "$arch-apple-macosx14.0" -import-objc-header Sources/HIDBridge.h Sources/Core.swift Sources/Model.swift Sources/ControllerDrawing.swift Sources/YuzuPreview.swift Sources/FastControllerView.swift Sources/FastPlots.swift Sources/RealtimeTrigger.swift Sources/XboxPreview.swift Sources/Views.swift Sources/App.swift build/HIDBridge.o -framework SwiftUI -framework AppKit -framework GameController -framework CoreBluetooth -framework IOKit -framework WebKit -o "$app/Contents/MacOS/ControllerDesk"
 cp Resources/controllers.json "$app/Contents/Resources/"
-blueutil_root="$(brew --prefix blueutil)"
-install -m 755 "$blueutil_root/bin/blueutil" "$app/Contents/Resources/blueutil"
-cp "$blueutil_root/LICENSE.txt" "$app/Contents/Resources/blueutil-LICENSE.txt"
+# Compile the pinned MIT helper for the same OS and architecture as the app.
+# A prebuilt Homebrew bottle can require a newer macOS than our deployment target.
+xcrun clang -O2 -Wall -Wextra -Werror -target "$arch-apple-macos14.0" Vendor/blueutil/blueutil.m -framework Foundation -framework IOBluetooth -o "$app/Contents/Resources/blueutil"
+cp Vendor/blueutil/LICENSE.txt "$app/Contents/Resources/blueutil-LICENSE.txt"
 cp Resources/References.md "$app/Contents/Resources/"
 cp Resources/yuzu-vectors.json "$app/Contents/Resources/"
 cp Resources/xbox-preview.html Resources/mobapad-preview.html Resources/mobapad-m6-hd.svg "$app/Contents/Resources/"
